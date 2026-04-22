@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_layout_featured_news_sections",
+  "info": {
+    "displayName": "Featured News Section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "articles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article.article"
+    }
+  },
+  "config": {}
+}

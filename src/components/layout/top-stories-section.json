@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_layout_top_stories_sections",
+  "info": {
+    "displayName": "Top Stories Section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "articles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article.article"
+    }
+  },
+  "config": {}
+}

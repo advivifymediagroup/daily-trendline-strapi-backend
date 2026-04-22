@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_shared_news_tickers",
+  "info": {
+    "displayName": "News Ticker"
+  },
+  "options": {},
+  "attributes": {
+    "link": {
+      "type": "component",
+      "component": "components.link",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}
