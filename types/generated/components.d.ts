@@ -1,5 +1,18 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface BlocksContactForm extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_contact_forms';
+  info: {
+    displayName: 'Contact Form';
+  };
+  attributes: {
+    heading: Schema.Attribute.String;
+    subHeading: Schema.Attribute.String;
+    submitLabel: Schema.Attribute.String;
+    successMessage: Schema.Attribute.String;
+  };
+}
+
 export interface BlocksHero extends Struct.ComponentSchema {
   collectionName: 'components_blocks_heroes';
   info: {
@@ -171,6 +184,7 @@ export interface SharedSlider extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'blocks.contact-form': BlocksContactForm;
       'blocks.hero': BlocksHero;
       'blocks.image-section': BlocksImageSection;
       'blocks.rich-text': BlocksRichText;
