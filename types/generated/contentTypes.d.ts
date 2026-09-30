@@ -443,12 +443,25 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
   attributes: {
     author: Schema.Attribute.Relation<'manyToOne', 'api::author.author'>;
     category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
-    content: Schema.Attribute.RichText;
+    content: Schema.Attribute.RichText &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 3000;
+        minLength: 50;
+      }>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.String;
-    excerpt: Schema.Attribute.String;
+    description: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        minLength: 5;
+      }>;
+    excerpt: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        minLength: 10;
+      }>;
     featuredImage: Schema.Attribute.Media<'images'>;
     isFeatured: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     isTickerNews: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
@@ -461,9 +474,17 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID<'title'>;
+    slug: Schema.Attribute.UID<'title'> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        minLength: 10;
+      }>;
     tags: Schema.Attribute.Relation<'manyToMany', 'api::tag.tag'>;
-    title: Schema.Attribute.String;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        minLength: 6;
+      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -483,7 +504,10 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
   attributes: {
     articles: Schema.Attribute.Relation<'oneToMany', 'api::article.article'>;
     avatar: Schema.Attribute.Media<'images'>;
-    bio: Schema.Attribute.Text;
+    bio: Schema.Attribute.Text &
+      Schema.Attribute.SetMinMaxLength<{
+        minLength: 3;
+      }>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -493,7 +517,12 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
       'api::author.author'
     > &
       Schema.Attribute.Private;
-    name: Schema.Attribute.String;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 100;
+        minLength: 3;
+      }>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -523,9 +552,19 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
       'api::category.category'
     > &
       Schema.Attribute.Private;
-    name: Schema.Attribute.String;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 100;
+        minLength: 3;
+      }>;
     publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID<'name'>;
+    slug: Schema.Attribute.UID<'name'> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 100;
+        minLength: 3;
+      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
